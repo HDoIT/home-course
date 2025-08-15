@@ -327,6 +327,282 @@
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
+
+    /* timeline */
+
+    .rbt-timeline-wrapper {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      padding-left: 50px;
+    }
+
+    .rbt-timeline-wrapper::before {
+      content: '';
+      position: absolute;
+      left: 72px;
+      top: 0;
+      height: 100%;
+      width: 4px;
+      background: linear-gradient(to bottom, #f97316, #3b82f6);
+      transform-origin: top;
+      transform: scaleY(0);
+      animation: lineGrow 1.5s ease-out forwards;
+      animation-delay: 0.3s;
+    }
+
+    .rbt-timeline-block {
+      display: flex;
+      margin-bottom: 40px;
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .rbt-timeline-block:nth-child(1) {
+      animation-delay: 0.4s;
+    }
+
+    .rbt-timeline-block:nth-child(2) {
+      animation-delay: 0.7s;
+    }
+
+    .rbt-timeline-block:nth-child(3) {
+      animation-delay: 1.0s;
+    }
+
+    .rbt-timeline-block:nth-child(4) {
+      animation-delay: 1.3s;
+    }
+
+    .rbt-timeline-block:nth-child(5) {
+      animation-delay: 1.6s;
+    }
+
+    .timeline-phase {
+      width: 130px;
+      padding-right: 20px;
+      text-align: right;
+      position: relative;
+    }
+
+    .timeline-phase span {
+      background: #f97316;
+      color: white;
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 14px;
+      display: inline-block;
+      transform: scale(0);
+      animation: scaleIn 0.5s ease forwards;
+      animation-delay: inherit;
+    }
+
+    .timeline-content {
+      flex: 1;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .timeline-period {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .timeline-period .date {
+      font-weight: 700;
+      color: #f97316;
+      min-width: 100px;
+      font-size: 15px;
+    }
+
+    .timeline-period .dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #3b82f6;
+      border: 4px solid white;
+      box-shadow: 0 0 0 2px #3b82f6;
+      margin-left: 15px;
+      position: relative;
+      z-index: 2;
+      transform: scale(0);
+      animation: dotPulse 0.8s ease forwards;
+      animation-delay: inherit;
+    }
+
+    .timeline-desc {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      border-left: 4px solid #f97316;
+      transform: perspective(1000px) rotateX(5deg);
+      transform-origin: bottom;
+    }
+
+    .timeline-desc:hover {
+      transform: perspective(1000px) rotateX(0deg) translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      border-left-color: #3b82f6;
+    }
+
+    .timeline-desc h4 {
+      margin-top: 0;
+      color: #222;
+      font-size: 18px;
+      margin-bottom: 15px;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .timeline-desc h4::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      background: #f97316;
+      border-radius: 50%;
+    }
+
+    .timeline-desc ul {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+
+    .timeline-desc li {
+      margin-bottom: 10px;
+      color: #555;
+      position: relative;
+      line-height: 1.6;
+      padding-left: 10px;
+    }
+
+    .timeline-desc li::before {
+      content: '•';
+      color: #3b82f6;
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+
+    @keyframes lineGrow {
+      from {
+        transform: scaleY(0);
+      }
+
+      to {
+        transform: scaleY(1);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        transform: scale(0);
+      }
+
+      to {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes dotPulse {
+      0% {
+        transform: scale(0);
+      }
+
+      50% {
+        transform: scale(1.2);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .rbt-timeline-wrapper {
+        padding-left: 20px;
+      }
+
+      .rbt-timeline-wrapper::before {
+        left: 42px;
+        width: 3px;
+      }
+
+      .rbt-timeline-block {
+        flex-direction: column;
+        margin-bottom: 30px;
+      }
+
+      .timeline-phase {
+        width: 100%;
+        text-align: left;
+        padding-right: 0;
+        margin-bottom: 10px;
+      }
+
+      .timeline-period {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .timeline-period .date {
+        margin-bottom: 8px;
+        margin-left: 40px;
+      }
+
+      .timeline-period .dot {
+        position: absolute;
+        left: -56px;
+        top: 5px;
+        margin-left: 0;
+      }
+
+      .timeline-desc {
+        padding: 20px 15px;
+      }
+
+      .timeline-desc h4 {
+        font-size: 17px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .rbt-timeline-wrapper {
+        padding-left: 15px;
+      }
+
+      .rbt-timeline-wrapper::before {
+        left: 37px;
+      }
+
+      .timeline-period .dot {
+        left: -51px;
+        width: 16px;
+        height: 16px;
+      }
+    }
   </style>
   <header class="rbt-header rbt-header-10">
     <div class="rbt-header-wrapper header-space-betwween header-sticky">
@@ -410,12 +686,12 @@
           <div id="if2hk" class="col-md-12 pb--120 pt--70">
             <div class="content">
               <div class="inner">
-                <div class="rbt-new-badge rbt-new-badge-one">Nuôi ngoại ngữ - Dưỡng tương lai
+                <div class="rbt-new-badge rbt-new-badge-one">Đã học là phải đỗ
                 </div>
-                <h1 class="title">HỌC VIỆN NGÔN NGỮ
-                  <br /> CHO GIA ĐÌNH
+                <h1 class="title">CHUYÊN SÂU
+                  <br /> TOÁN 9
                 </h1>
-                <p class="description">Ba mẹ chính là người có sức ảnh hưởng lớn nhất đến con cái
+                <p class="description">Giúp các bạn 2k11 các bạn điểm toán đúng theo mong muốn
                 </p>
                 <div class="slider-btn">
                   <a href="#" class="rbt-btn btn-gradient">
@@ -447,61 +723,59 @@
           <div class="col-lg-6">
             <div class="thumbnail-wrapper">
               <div class="thumbnail">
-                <img
-                  src="https://images.pexels.com/photos/5905497/pexels-photo-5905497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  alt="Về chúng tôi" />
+                <img src="/images/DSCF0113.JPG" alt="Thầy Hoàng Nam" />
               </div>
             </div>
           </div>
           <div class="col-lg-6">
             <div class="inner pl--50">
               <div class="section-title text-start">
-                <span class="subtitle bg-coral-opacity">Về Chúng Tôi</span>
-                <h2 class="title">Nền Tảng Anh Ngữ Cho Gia Đình
+                <span class="subtitle bg-coral-opacity">Về chúng tôi</span>
+                <h2 class="title">Thầy Hoàng Nam - Chuyên Gia Toán 9
                 </h2>
               </div>
-              <p class="description mt--30">Chúng tôi là tổ chức giáo dục tiên phong xây dựng các khóa học ngoại ngữ
-                xoay quanh triết lý lấy gia đình làm nền tảng. Chúng tôi tin rằng, ba mẹ chính là những người thầy tốt
-                nhất, có sức ảnh hưởng lớn nhất đến sự phát triển ngôn ngữ và tư duy của con trẻ.
+              <p class="description mt--30">Với nhiều năm kinh nghiệm luyện thi vào lớp 10, thầy Hoàng Nam đã giúp nhiều
+                học sinh đạt điểm 9,10 môn Toán. Phương pháp giảng dạy "Tư duy logic - Giải đề thực chiến" của thầy giúp
+                học sinh nắm chắc kiến thức và kỹ năng làm bài thi hiệu quả.
               </p>
               <!-- Start Feature List -->
               <div class="rbt-feature-wrapper mt--40">
                 <div class="rbt-feature feature-style-1">
                   <div class="icon bg-pink-opacity">
-                    <i class="feather-heart">
+                    <i class="feather-activity">
                     </i>
                   </div>
                   <div class="feature-content">
-                    <h6 class="feature-title">Môi trường học tập hạnh phúc
+                    <h6 class="feature-title">Phương pháp độc quyền
                     </h6>
-                    <p class="feature-description">Tạo ra không gian học tập vui vẻ, nơi cả gia đình cùng nhau khám phá
-                      và chinh phục ngoại ngữ.
+                    <p class="feature-description">Hệ thống kiến thức 3 cấp độ: Cơ bản - Vận dụng - Nâng cao, bám sát
+                      cấu trúc đề thi vào 10.
                     </p>
                   </div>
                 </div>
                 <div class="rbt-feature feature-style-1">
                   <div class="icon bg-primary-opacity">
-                    <i class="feather-book">
+                    <i class="feather-award">
                     </i>
                   </div>
                   <div class="feature-content">
-                    <h6 class="feature-title">Phương pháp giáo dục hiện đại
+                    <h6 class="feature-title">Thành tích nổi bật
                     </h6>
-                    <p class="feature-description">Áp dụng các phương pháp tiên tiến, giúp trẻ tiếp thu ngôn ngữ một
-                      cách tự nhiên và hiệu quả.
+                    <p class="feature-description">85% học sinh đạt từ 8 điểm trở lên, 40% đạt điểm tuyệt đối trong kỳ
+                      thi vào 10.
                     </p>
                   </div>
                 </div>
                 <div class="rbt-feature feature-style-1">
                   <div class="icon bg-coral-opacity">
-                    <i class="feather-monitor">
+                    <i class="feather-users">
                     </i>
                   </div>
                   <div class="feature-content">
-                    <h6 class="feature-title">Học liệu đa dạng, phong phú
+                    <h6 class="feature-title">Lớp học tương tác
                     </h6>
-                    <p class="feature-description">Cung cấp hệ thống học liệu độc quyền, từ sách, video đến các hoạt
-                      động tương tác.
+                    <p class="feature-description">Hỗ trợ 1-1, giải đáp thắc mắc 24/7 và chữa bài chi tiết từng học
+                      sinh.
                     </p>
                   </div>
                 </div>
@@ -509,7 +783,7 @@
               <!-- End Feature List -->
               <div class="about-btn mt--40">
                 <a href="#" class="rbt-btn btn-gradient">
-                  Tìm hiểu thêm <i class="feather-arrow-right btn-arrow">
+                  Đăng ký học cùng thầy <i class="feather-arrow-right btn-arrow">
                   </i></a>
               </div>
             </div>
@@ -519,106 +793,114 @@
     </div>
     <!-- End About Area -->
     <!-- Start Categories Area -->
-    <div class="rbt-categories-area bg-color-white rbt-section-gap">
+    <div class="rbt-timeline-area bg-color-white rbt-section-gap">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
             <div class="section-title text-center">
-              <span class="subtitle bg-primary-opacity">GIẢI PHÁP TOÀN DIỆN</span>
-              <h2 class="title">Giải pháp ngoại ngữ toàn diện cho cả gia đình
-              </h2>
+              <span class="subtitle bg-primary-opacity">LỘ TRÌNH HỌC TẬP</span>
+              <h2 class="title">Lộ trình chuyên sâu Toán 9</h2>
             </div>
           </div>
         </div>
-        <div class="row g-5 mt--20">
-          <!-- Start Category Box -->
-          <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <div class="rbt-cat-box rbt-cat-box-1 text-center">
-              <div class="inner">
-                <div class="thumbnail">
-                  <a href="#"><img
-                      src="https://images.pexels.com/photos/8617965/pexels-photo-8617965.jpeg?auto=compress&cs=tinysrgb&w=600"
-                      alt="Ngoại ngữ Mầm Non" /></a>
-                </div>
-                <div class="content">
-                  <h5 class="title">
-                    <a href="#">Ngoại ngữ Mầm Non</a>
-                  </h5>
-                  <div class="read-more-btn">
-                    <a href="#" class="rbt-btn-link">Xem chi tiết<i class="feather-arrow-right">
-                      </i></a>
-                  </div>
-                </div>
+
+        <div class="rbt-timeline-wrapper mt--40">
+          <div class="rbt-timeline-block">
+            <div class="timeline-phase">
+              <span>Giai đoạn 1</span>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-period">
+                <span class="date">25/8 - 25/10</span>
+                <span class="dot"></span>
+              </div>
+              <div class="timeline-desc">
+                <h4>Học kiến thức học kì I và luyện đề giữa kì I</h4>
+                <ul>
+                  <li>Nắm vững toàn bộ kiến thức Đại số & Hình học HK1</li>
+                  <li>Làm quen cấu trúc đề thi giữa kì</li>
+                  <li>Thực hành 15+ đề thi giữa kì mẫu</li>
+                </ul>
               </div>
             </div>
           </div>
-          <!-- End Category Box -->
-          <!-- Start Category Box -->
-          <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <div class="rbt-cat-box rbt-cat-box-1 text-center">
-              <div class="inner">
-                <div class="thumbnail">
-                  <a href="#"><img
-                      src="https://images.pexels.com/photos/4145146/pexels-photo-4145146.jpeg?auto=compress&cs=tinysrgb&w=600"
-                      alt="Ngoại ngữ Tiểu Học" /></a>
-                </div>
-                <div class="content">
-                  <h5 class="title">
-                    <a href="#">Ngoại ngữ Tiểu Học</a>
-                  </h5>
-                  <div class="read-more-btn">
-                    <a href="#" class="rbt-btn-link">Xem chi tiết<i class="feather-arrow-right">
-                      </i></a>
-                  </div>
-                </div>
+
+          <div class="rbt-timeline-block">
+            <div class="timeline-phase"></div>
+            <div class="timeline-content">
+              <div class="timeline-period">
+                <span class="date">26/10 - 25/12</span>
+                <span class="dot"></span>
+              </div>
+              <div class="timeline-desc">
+                <h4>Hoàn thành kiến thức học kì I và luyện đề cuối kì I</h4>
+                <ul>
+                  <li>Ôn tập chuyên sâu các chuyên đề</li>
+                  <li>Luyện 20+ đề thi cuối kì I</li>
+                  <li>Phương pháp giải nhanh trắc nghiệm</li>
+                </ul>
               </div>
             </div>
           </div>
-          <!-- End Category Box -->
-          <!-- Start Category Box -->
-          <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <div class="rbt-cat-box rbt-cat-box-1 text-center">
-              <div class="inner">
-                <div class="thumbnail">
-                  <a href="#"><img
-                      src="https://images.pexels.com/photos/5212320/pexels-photo-5212320.jpeg?auto=compress&cs=tinysrgb&w=600"
-                      alt="Ngoại ngữ Trung Học" /></a>
-                </div>
-                <div class="content">
-                  <h5 class="title">
-                    <a href="#">Ngoại ngữ Trung Học</a>
-                  </h5>
-                  <div class="read-more-btn">
-                    <a href="#" class="rbt-btn-link">Xem chi tiết<i class="feather-arrow-right">
-                      </i></a>
-                  </div>
-                </div>
+
+          <div class="rbt-timeline-block">
+            <div class="timeline-phase">
+              <span>Giai đoạn 2</span>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-period">
+                <span class="date">26/12 - 25/2</span>
+                <span class="dot"></span>
+              </div>
+              <div class="timeline-desc">
+                <h4>Học kiến thức học kì II và luyện đề giữa kì II</h4>
+                <ul>
+                  <li>Tiếp thu kiến thức trọng tâm HK2</li>
+                  <li>Luyện 15+ đề thi giữa kì II</li>
+                  <li>Kỹ thuật trình bày bài thi tự luận</li>
+                </ul>
               </div>
             </div>
           </div>
-          <!-- End Category Box -->
-          <!-- Start Category Box -->
-          <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <div class="rbt-cat-box rbt-cat-box-1 text-center">
-              <div class="inner">
-                <div class="thumbnail">
-                  <a href="#"><img
-                      src="https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=600"
-                      alt="Ngoại ngữ Người Lớn" /></a>
-                </div>
-                <div class="content">
-                  <h5 class="title">
-                    <a href="#">Ngoại ngữ Người Lớn</a>
-                  </h5>
-                  <div class="read-more-btn">
-                    <a href="#" class="rbt-btn-link">Xem chi tiết<i class="feather-arrow-right">
-                      </i></a>
-                  </div>
-                </div>
+
+          <div class="rbt-timeline-block">
+            <div class="timeline-phase"></div>
+            <div class="timeline-content">
+              <div class="timeline-period">
+                <span class="date">26/2 - 25/3</span>
+                <span class="dot"></span>
+              </div>
+              <div class="timeline-desc">
+                <h4>Hoàn thành kiến thức cả năm học</h4>
+                <ul>
+                  <li>Tổng ôn toàn bộ chương trình</li>
+                  <li>Hệ thống hóa kiến thức qua sơ đồ tư duy</li>
+                  <li>Luyện 10+ đề tổng hợp</li>
+                </ul>
               </div>
             </div>
           </div>
-          <!-- End Category Box -->
+
+          <div class="rbt-timeline-block">
+            <div class="timeline-phase">
+              <span>Giai đoạn 3</span>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-period">
+                <span class="date">26/3 - 30/5</span>
+                <span class="dot"></span>
+              </div>
+              <div class="timeline-desc">
+                <h4>Luyện đề thực chiến tuyển sinh vào 10</h4>
+                <ul>
+                  <li>Luyện 30+ đề thi vào 10 các năm</li>
+                  <li>Chiến thuật làm bài thi thông minh</li>
+                  <li>Phân tích lỗi sai thường gặp</li>
+                  <li>Thi thử 5 lần như thi thật</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -751,7 +1033,7 @@
         <div class="row g-5">
           <!-- Start Single Course -->
           <div class="col-lg-4 col-md-6 col-12">
-            <div class="rbt-card variation-01 rbt-hover">
+            <!-- <div class="rbt-card variation-01 rbt-hover">
               <div class="rbt-card-img">
                 <a href="#"><img
                     src="https://images.pexels.com/photos/5088017/pexels-photo-5088017.jpeg?auto=compress&cs=tinysrgb&w=600"
@@ -773,7 +1055,7 @@
                     </i></a>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
           <!-- End Single Course -->
           <!-- Start Single Course -->
@@ -791,6 +1073,7 @@
                 <div class="rbt-card-bottom">
                   <div class="rbt-price">
                     <span class="current-price">1.500.000đ</span>
+                    <span class="off-price">4.000.000đ</span>
                   </div>
                   <a href="#" class="rbt-btn-link">Xem chi tiết<i class="feather-arrow-right">
                     </i></a>
@@ -801,7 +1084,7 @@
           <!-- End Single Course -->
           <!-- Start Single Course -->
           <div class="col-lg-4 col-md-6 col-12">
-            <div class="rbt-card variation-01 rbt-hover">
+            <!-- <div class="rbt-card variation-01 rbt-hover">
               <div class="rbt-card-img">
                 <a href="#"><img
                     src="https://images.pexels.com/photos/6238133/pexels-photo-6238133.jpeg?auto=compress&cs=tinysrgb&w=600"
@@ -822,7 +1105,7 @@
                     </i></a>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
           <!-- End Single Course -->
         </div>
@@ -848,15 +1131,14 @@
         </div>
       </div>
       <div id="ics6b6" class="section-title text-center">
-        <span id="iwcpec" class="subtitle bg-primary-opacity">CON SỐ ẤN TƯỢNG</span>
+        <span id="iwcpec" class="subtitle bg-primary-opacity">THÀNH TỰU NỔI BẬT</span>
       </div>
       <div class="rbt-counterup-area bg-vibrant-gradient">
         <div class="container">
           <div class="row mb--60">
             <div class="col-lg-12">
               <div class="section-title text-center">
-                <h2 class="title">Chúng tôi tự hào đồng hành phát triển ngoại ngữ
-                  <br /> cùng hàng ngàn gia đình trên khắp Việt Nam
+                <h2 class="title">Hành trình chinh phục Toán học cùng <br /> thế hệ học sinh xuất sắc
                 </h2>
               </div>
             </div>
@@ -867,9 +1149,9 @@
               <div class="rbt-counterup rbt-hover-03 style-2 text-center">
                 <div class="inner">
                   <div class="content">
-                    <h3 data-target="5000" class="counter">100
+                    <h3 data-target="1200" class="counter">100
                     </h3>
-                    <h5 class="title">Gia đình
+                    <h5 class="title">Học sinh đạt 9-10 điểm
                     </h5>
                   </div>
                 </div>
@@ -881,9 +1163,9 @@
               <div class="rbt-counterup rbt-hover-03 style-2 text-center">
                 <div class="inner">
                   <div class="content">
-                    <h3 data-target="10000" class="counter">200
+                    <h3 data-target="5000" class="counter">200
                     </h3>
-                    <h5 class="title">Học viên
+                    <h5 class="title">Bài giảng chuyên sâu
                     </h5>
                   </div>
                 </div>
@@ -897,7 +1179,7 @@
                   <div class="content">
                     <h3 data-target="50" class="counter">4
                     </h3>
-                    <h5 class="title">Khoá học
+                    <h5 class="title">Năm kinh nghiệm
                     </h5>
                   </div>
                 </div>
@@ -909,9 +1191,9 @@
               <div class="rbt-counterup rbt-hover-03 style-2 text-center">
                 <div class="inner">
                   <div class="content">
-                    <h3 data-target="2000" class="counter">40
+                    <h3 data-target="98" class="counter">40
                     </h3>
-                    <h5 class="title">Bài giảng
+                    <h5 class="title">Tỉ lệ đỗ chuyên
                     </h5>
                   </div>
                 </div>
@@ -939,7 +1221,6 @@
           <!-- Hàng chạy từ phải sang trái -->
           <div class="testimonial-marquee-container">
             <div class="testimonial-track marquee-rtl">
-              <!-- Lặp lại các box để tạo hiệu ứng vô tận -->
               <div class="rbt-testimonial-box">
                 <div class="inner">
                   <div class="clint-info-wrapper">
@@ -997,7 +1278,6 @@
                   </div>
                 </div>
               </div>
-              <!-- Duplicate -->
               <div class="rbt-testimonial-box">
                 <div class="inner">
                   <div class="clint-info-wrapper">
@@ -1087,7 +1367,7 @@
                   </div>
                 </div>
               </div>
-              <div class="rbt-testimonial-box">
+              <!-- <div class="rbt-testimonial-box">
                 <div class="inner">
                   <div class="clint-info-wrapper">
                     <div class="thumb">
@@ -1105,7 +1385,7 @@
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <div class="rbt-testimonial-box">
                 <div class="inner">
                   <div class="clint-info-wrapper">
@@ -1156,7 +1436,7 @@
                   </div>
                 </div>
               </div>
-              <div class="rbt-testimonial-box">
+              <!-- <div class="rbt-testimonial-box">
                 <div class="inner">
                   <div class="clint-info-wrapper">
                     <div class="thumb">
@@ -1174,7 +1454,7 @@
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <div class="rbt-testimonial-box">
                 <div class="inner">
                   <div class="clint-info-wrapper">
@@ -1218,8 +1498,8 @@
         <div class="row mb--60">
           <div class="col-lg-12">
             <div class="section-title text-center">
-              <span class="subtitle bg-secondary-opacity">Giáo VIÊN</span>
-              <h2 class="title">Gặp gỡ đội ngũ giáo viên tâm huyết
+              <span class="subtitle bg-secondary-opacity">Giáo Viên</span>
+              <h2 class="title">Gặp gỡ giáo viên Hoàng Nam
               </h2>
             </div>
           </div>
@@ -1227,7 +1507,7 @@
         <div class="row g-5">
           <!-- Start Single Team -->
           <div class="col-lg-4 col-md-6 col-12">
-            <div class="rbt-team team-style-default">
+            <!-- <div class="rbt-team team-style-default">
               <div class="inner">
                 <div class="thumbnail">
                   <img
@@ -1243,7 +1523,7 @@
                     </i><span class="location">Hà Nội, Việt Nam</span></span>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
           <!-- End Single Team -->
           <!-- Start Single Team -->
@@ -1267,7 +1547,7 @@
           <!-- End Single Team -->
           <!-- Start Single Team -->
           <div class="col-lg-4 col-md-6 col-12">
-            <div class="rbt-team team-style-default">
+            <!-- <div class="rbt-team team-style-default">
               <div class="inner">
                 <div class="thumbnail">
                   <img
@@ -1283,7 +1563,7 @@
                     </i><span class="location">Đà Nẵng, Việt Nam</span></span>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
           <!-- End Single Team -->
         </div>
@@ -1318,8 +1598,8 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="section-title text-center">
-              <span class="subtitle bg-primary-opacity">Blog &amp; Tin tức</span>
-              <h2 class="title">Góc Chia Sẻ
+              <span class="subtitle bg-primary-opacity">Kiến Thức Toán Học</span>
+              <h2 class="title">Bí Quyết Học Tốt Toán 9
               </h2>
             </div>
           </div>
@@ -1330,18 +1610,17 @@
             <div class="rbt-card variation-02 rbt-hover">
               <div class="rbt-card-img">
                 <a href="#"><img
-                    src="https://images.pexels.com/photos/3771045/pexels-photo-3771045.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="Blog Image" /> </a>
+                    src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    alt="Phương pháp học Toán" /></a>
               </div>
               <div class="rbt-card-body">
                 <h5 class="rbt-card-title">
-                  <a href="#">Bí quyết giúp con học ngoại ngữ qua bài hát</a>
+                  <a href="#">5 Bước Giải Toán Hình Học Hiệu Quả</a>
                 </h5>
-                <p class="rbt-card-text">Âm nhạc là một công cụ tuyệt vời để giúp trẻ học ngôn ngữ một cách vui vẻ và tự
-                  nhiên. Hãy cùng khám phá...
+                <p class="rbt-card-text">Khám phá phương pháp tư duy hình học logic giúp giải quyết mọi bài toán hình lớp 9 từ cơ bản đến nâng cao...
                 </p>
                 <div class="rbt-card-bottom">
-                  <a href="#" class="rbt-btn-link">Đọc thêm<i class="feather-arrow-right">
+                  <a href="#" class="rbt-btn-link">Xem ngay<i class="feather-arrow-right">
                     </i></a>
                 </div>
               </div>
@@ -1353,18 +1632,17 @@
             <div class="rbt-card variation-02 rbt-hover">
               <div class="rbt-card-img">
                 <a href="#"><img
-                    src="https://images.pexels.com/photos/4144144/pexels-photo-4144144.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="Blog Image" /></a>
+                    src="/images/DSCF0103.JPG"
+                    alt="Lỗi thường gặp" /></a>
               </div>
               <div class="rbt-card-body">
                 <h5 class="rbt-card-title">
-                  <a href="#">5 sai lầm thường gặp khi dạy ngoại ngữ cho trẻ</a>
+                  <a href="#">10 Sai Lầm Khi Giải Đề Thi Vào 10</a>
                 </h5>
-                <p class="rbt-card-text">Dạy ngoại ngữ cho con tại nhà là một hành trình tuyệt vời nhưng cũng không ít
-                  thách thức. Dưới đây là 5 sai lầm...
+                <p class="rbt-card-text">Tổng hợp những lỗi thường gặp khi làm bài thi Toán vào 10 và cách khắc phục để đạt điểm tối đa...
                 </p>
                 <div class="rbt-card-bottom">
-                  <a href="#" class="rbt-btn-link">Đọc thêm<i class="feather-arrow-right">
+                  <a href="#" class="rbt-btn-link">Xem ngay<i class="feather-arrow-right">
                     </i></a>
                 </div>
               </div>
@@ -1376,18 +1654,17 @@
             <div class="rbt-card variation-02 rbt-hover">
               <div class="rbt-card-img">
                 <a href="#"><img
-                    src="https://images.pexels.com/photos/4145354/pexels-photo-4145354.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="Blog Image" /></a>
+                    src="https://images.unsplash.com/photo-1509869175650-a1d97972541a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    alt="Chiến thuật thi cử" /></a>
               </div>
               <div class="rbt-card-body">
                 <h5 class="rbt-card-title">
-                  <a href="#">Vai trò của ba mẹ trong việc học ngoại ngữ của con</a>
+                  <a href="#">Chiến Thuật Phân Bổ Thời Gian Khi Thi Toán</a>
                 </h5>
-                <p class="rbt-card-text">Ba mẹ không chỉ là người thầy đầu tiên mà còn là người bạn đồng hành quan trọng
-                  nhất trên con đường...
+                <p class="rbt-card-text">Hướng dẫn cách phân chia thời gian hợp lý cho từng dạng bài trong đề thi để hoàn thành bài thi một cách hiệu quả nhất...
                 </p>
                 <div class="rbt-card-bottom">
-                  <a href="#" class="rbt-btn-link">Đọc thêm<i class="feather-arrow-right">
+                  <a href="#" class="rbt-btn-link">Xem ngay<i class="feather-arrow-right">
                     </i></a>
                 </div>
               </div>
